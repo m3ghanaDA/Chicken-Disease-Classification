@@ -1,159 +1,358 @@
-# Chicken-Disease-Classification
+# 🐔 End-to-End Deep Learning Project: Chicken Disease Classification with MLOps
 
+## 📌 Project Overview
 
-## Workflows
+This project is a production-ready Deep Learning application that classifies chicken diseases from feather images using Transfer Learning and MLOps best practices. The solution automates the complete machine learning lifecycle, from data ingestion and model training to deployment on cloud platforms such as AWS and Azure.
 
-1. Update config.yaml
-2. Update secrets.yaml [Optional]
-3. Update params.yaml
-4. Update the entity
-5. Update the configuration manager in src config
-6. Update the components
-7. Update the pipeline 
-8. Update the main.py
-9. Update the dvc.yaml
+The project leverages:
 
+- TensorFlow & Keras
+- Transfer Learning (VGG16)
+- DVC (Data Version Control)
+- GitHub Actions (CI/CD)
+- Docker
+- Flask
+- AWS & Azure Cloud Services
 
-# How to run?
-### STEPS:
+---
 
-Clone the repository
+## 🚀 Features
+
+✅ End-to-End Deep Learning Pipeline
+
+✅ Automated Data Ingestion
+
+✅ Transfer Learning with VGG16
+
+✅ Model Training & Evaluation
+
+✅ Flask Web Application
+
+✅ DVC Pipeline Tracking
+
+✅ GitHub Actions CI/CD
+
+✅ Docker Containerization
+
+✅ AWS Deployment (ECR + EC2)
+
+✅ Azure Deployment (ACR + Web App)
+
+---
+
+## 🏗️ Project Architecture
+
+```text
+├── config/
+├── artifacts/
+│   ├── data_ingestion/
+│   ├── prepare_base_model/
+│   ├── training/
+│   └── evaluation/
+├── logs/
+├── research/
+├── src/
+│   ├── components/
+│   ├── pipeline/
+│   ├── config/
+│   ├── entity/
+│   ├── utils/
+│   └── constants/
+├── templates/
+├── static/
+├── app.py
+├── main.py
+├── params.yaml
+├── config.yaml
+├── dvc.yaml
+├── Dockerfile
+├── requirements.txt
+└── .github/workflows/
+```
+
+---
+
+## 🔄 Workflow
+
+### 1. Data Ingestion
+- Download chicken feather image dataset
+- Extract and organize images
+- Store data in artifact directory
+
+### 2. Prepare Base Model
+- Load pre-trained VGG16 model
+- Freeze feature extraction layers
+- Add custom classification layers
+
+### 3. Prepare Callbacks
+- Model checkpoints
+- TensorBoard logging
+- Training monitoring
+
+### 4. Model Training
+- Data preprocessing
+- Data generators
+- Fine-tuning and training
+
+### 5. Model Evaluation
+- Evaluate trained model
+- Generate performance metrics
+- Store results in JSON format
+
+### 6. Prediction Pipeline
+- Load trained model
+- Preprocess user image
+- Generate disease prediction
+
+### 7. Web Application
+- Upload chicken feather images
+- Trigger predictions
+- Display classification results
+
+---
+
+## 🧠 Model Details
+
+| Parameter | Value |
+|------------|---------|
+| Model | VGG16 |
+| Input Size | 224 × 224 × 3 |
+| Framework | TensorFlow/Keras |
+| Batch Size | 16 |
+| Learning Method | Transfer Learning |
+| Task | Binary Image Classification |
+
+### Classes
+
+- Healthy
+- Coccidiosis Disease
+
+---
+
+## ⚙️ MLOps Implementation
+
+### DVC (Data Version Control)
+
+Used for:
+
+- Dataset versioning
+- Pipeline tracking
+- Experiment reproducibility
+- Dependency management
+
+Pipeline stages:
+
+```text
+data_ingestion
+prepare_base_model
+model_training
+model_evaluation
+```
+
+Run DVC pipeline:
 
 ```bash
-https://github.com/m3ghanaDA/Chicken-Disease-Classification
+dvc repro
 ```
-### STEP 01- Create a conda environment after opening the repository
+
+Visualize pipeline:
 
 ```bash
-conda create -n cnncls python=3.8 -y
+dvc dag
 ```
+
+---
+
+## 🔄 CI/CD with GitHub Actions
+
+Automated workflow:
+
+1. Push code to GitHub
+2. GitHub Actions triggered
+3. Build Docker image
+4. Run tests
+5. Deploy to cloud environment
+
+Workflow location:
+
+```text
+.github/workflows/main.yaml
+```
+
+---
+
+## 🐳 Docker Deployment
+
+Build Docker image:
 
 ```bash
-conda activate cnncls
+docker build -t chicken-disease-classifier .
 ```
 
-
-### STEP 02- install the requirements
-```bash
-pip install -r requirements.txt
-```
-
+Run container:
 
 ```bash
-# Finally run the following command
-python app.py
+docker run -p 8080:8080 chicken-disease-classifier
 ```
 
-Now,
-```bash
-open up you local host and port
+---
+
+## ☁️ AWS Deployment
+
+### Services Used
+
+- AWS Elastic Container Registry (ECR)
+- AWS EC2
+- GitHub Actions
+
+### Deployment Flow
+
+```text
+GitHub
+   ↓
+GitHub Actions
+   ↓
+Docker Build
+   ↓
+AWS ECR
+   ↓
+AWS EC2
+   ↓
+Application Running
 ```
 
+---
 
-### DVC cmd
+## ☁️ Azure Deployment
 
-1. dvc init
-2. dvc repro
-3. dvc dag
+### Services Used
 
+- Azure Container Registry (ACR)
+- Azure Web App for Containers
 
+### Deployment Flow
 
-# AWS-CICD-Deployment-with-Github-Actions
+```text
+GitHub
+   ↓
+GitHub Actions
+   ↓
+Docker Build
+   ↓
+Azure Container Registry
+   ↓
+Azure Web App
+```
 
-## 1. Login to AWS console.
+---
 
-## 2. Create IAM user for deployment
+## 🖥️ Web Application
 
-	#with specific access
+The Flask-based web interface allows users to:
 
-	1. EC2 access : It is virtual machine
+- Upload chicken feather images
+- Predict disease status
+- Trigger model retraining
+- View results instantly
 
-	2. ECR: Elastic Container registry to save your docker image in aws
+---
 
+## 📊 Technologies Used
 
-	#Description: About the deployment
+### Programming
 
-	1. Build docker image of the source code
+- Python
 
-	2. Push your docker image to ECR
+### Deep Learning
 
-	3. Launch Your EC2 
+- TensorFlow
+- Keras
 
-	4. Pull Your image from ECR in EC2
+### MLOps
 
-	5. Lauch your docker image in EC2
+- DVC
+- GitHub Actions
 
-	#Policy:
+### Backend
 
-	1. AmazonEC2ContainerRegistryFullAccess
+- Flask
 
-	2. AmazonEC2FullAccess
+### Containerization
 
-	
-## 3. Create ECR repo to store/save docker image
-    - Save the URI: 637423243273.dkr.ecr.eu-north-1.amazonaws.com/chicken
-    
+- Docker
 
-	
-## 4. Create EC2 machine (Ubuntu) 
+### Cloud
 
-## 5. Open EC2 and Install docker in EC2 Machine:
-	
-	
-	#optinal
+- AWS
+- Azure
 
-	sudo apt-get update -y
+### Utilities
 
-	sudo apt-get upgrade
-	
-	#required
+- YAML
+- Logging
+- JSON
+- TensorBoard
 
-	curl -fsSL https://get.docker.com -o get-docker.sh
+---
 
-	sudo sh get-docker.sh
+## 📈 Future Improvements
 
-	sudo usermod -aG docker ubuntu
+- Multi-class disease classification
+- Hyperparameter tuning
+- MLflow integration
+- Kubernetes deployment
+- Model monitoring and drift detection
+- Automated retraining pipelines
 
-	newgrp docker
-	
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
+---
 
+## 🎯 Learning Outcomes
 
-# 7. Setup github secrets:
+This project demonstrates:
 
-    AWS_ACCESS_KEY_ID=
+- Deep Learning Pipeline Development
+- Transfer Learning Implementation
+- Production-Grade MLOps Practices
+- CI/CD Automation
+- Docker Containerization
+- Cloud Deployment on AWS & Azure
+- Software Engineering Best Practices for ML Systems
 
-    AWS_SECRET_ACCESS_KEY=
+---
 
-    AWS_REGION = us-east-1
+## 📷 Sample Application Workflow
 
-    AWS_ECR_LOGIN_URI = demo>>  566373416292.dkr.ecr.ap-south-1.amazonaws.com
+```text
+User Uploads Image
+          ↓
+Image Preprocessing
+          ↓
+Trained VGG16 Model
+          ↓
+Prediction
+          ↓
+Result Displayed on Flask UI
+```
 
-    ECR_REPOSITORY_NAME = simple-app
+---
 
+## 🤝 Contributing
 
+Contributions, issues, and feature requests are welcome.
 
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
 
-# AZURE-CICD-Deployment-with-Github-Actions
+---
 
-## Save pass:
+## ⭐ Acknowledgements
 
-s3cEZKH5yytiVnJ3h+eI3qhhzf9q1vNwEi6+q+WGdd+ACRCZ7JD6
+This project follows an industry-standard MLOps workflow inspired by modern machine learning deployment practices and demonstrates how to take a Deep Learning model from experimentation to production.
 
+---
 
-## Run from terminal:
+## 📜 License
 
-docker build -t chickenapp.azurecr.io/chicken:latest .
-
-docker login chickenapp.azurecr.io
-
-docker push chickenapp.azurecr.io/chicken:latest
-
-
-## Deployment Steps:
-
-1. Build the Docker image of the Source Code
-2. Push the Docker image to Container Registry
-3. Launch the Web App Server in Azure 
-4. Pull the Docker image from the container registry to Web App server and run 
+This project is licensed under the MIT License.
