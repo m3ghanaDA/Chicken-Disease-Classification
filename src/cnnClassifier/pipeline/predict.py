@@ -1,4 +1,5 @@
-
+import os
+os.environ["TF_USE_LEGACY_KERAS"] = "1"
 
 # Your existing imports continue below...
 from keras.models import load_model
@@ -18,7 +19,7 @@ class PredictionPipeline:
     
     def predict(self):
         # load model
-        model = load_model(os.path.join("artifacts","training", "model.h5"))
+        model = load_model(os.path.join("artifacts","training", "model.h5"), compile=False)
 
         imagename = self.filename
         test_image = image.load_img(imagename, target_size = (224,224))
