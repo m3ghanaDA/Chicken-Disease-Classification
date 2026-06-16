@@ -1,8 +1,4 @@
-import os
-os.environ["TF_USE_LEGACY_KERAS"] = "1"
 
-# Your existing imports continue below...
-from keras.models import load_model
 
 import streamlit as st
 from PIL import Image
