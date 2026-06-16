@@ -1,4 +1,9 @@
+import os
+os.environ["TF_USE_LEGACY_KERAS"] = "1"
 
+# Your existing imports continue below...
+from keras.models import load_model
+from keras.preprocessing import image
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
