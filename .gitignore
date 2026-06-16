@@ -171,3 +171,5 @@ cython_debug/
 .pypirc
 
 artifacts/*
+!artifacts/training/
+!artifacts/training/model.h5
